@@ -111,7 +111,7 @@ void bacaJarak() {
     echoDiterima = false;
     objekTerdeteksi = false;
   } else {
-    jarak = durasi / 58.0;
+    jarak = (durasi * 0.034) / 2;
     echoDiterima = true;
     objekTerdeteksi = jarak < 80;
   }
@@ -173,7 +173,7 @@ void kirimData() {
     Serial.print(kondisi);
   }
   Serial.print(" | Jarak: ");
-  Serial.print(jarak);
+  Serial.print(jarak, 0);
   Serial.print(" cm");
   Serial.print(" | Kondisi: ");
   Serial.print(kondisi);
@@ -186,7 +186,7 @@ void kirimData() {
     Blynk.virtualWrite(V0, alarmDiizinkan);
     Blynk.virtualWrite(V1, dhtValid ? suhu : -41);
     Blynk.virtualWrite(V2, dhtValid ? kelembaban : -1);
-    Blynk.virtualWrite(V3, jarak);
+    Blynk.virtualWrite(V3, roundf(jarak));
     Blynk.virtualWrite(V4, kondisi);
     Blynk.virtualWrite(V5, buzzerAktif);
     Blynk.virtualWrite(V6, objekTerdeteksi);
